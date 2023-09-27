@@ -17,4 +17,8 @@ configuration:
       type: string
     image-label:
       type: string
+    allowlist:
+      type: array
+      items:
+        type: string
   additionalProperties: false
