@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/cultureamp/ecrscanresults/runtimeerrors"
+	"github.com/buildkite/ecrscanresults/runtimeerrors"
 	_ "github.com/hexops/autogold/v2"
 	"github.com/stretchr/testify/assert"
 )

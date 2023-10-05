@@ -1,0 +1,34 @@
+project_name: ecr-scan-results-buildkite-plugin
+
+builds:
+  - binary: ecr-scan-results-buildkite-plugin
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - "386"
+      - amd64
+      - arm
+      - arm64
+      - ppc64le
+    ldflags:
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.builtBy=goreleaser
+
+checksum:
+  name_template: "checksums.txt"
+
+archives:
+  - format: "binary"
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"

@@ -3,7 +3,7 @@ description: >
   Retrieves vulnerability scan results from ECR, creating a report as an
   annotation on the build. Will fail the step if vulnerabilities exist (though
   this is configurable).
-author: https://github.com/cultureamp
+author: https://github.com/buildkite
 requirements:
   - docker
   - jq
@@ -17,4 +17,5 @@ configuration:
       type: string
     image-label:
       type: string
+
   additionalProperties: false

@@ -18,4 +18,6 @@ fi
 # shellcheck source=lib/download.bash
 . "$dir/../lib/download.bash"
 
+env | grep -i BUILDKITE_PLUGIN_ECR_SCAN_RESULTS
+
 download_binary_and_run "$@" || exit 1

@@ -11,12 +11,12 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/cultureamp/ecrscanresults/buildkite"
-	"github.com/cultureamp/ecrscanresults/finding"
-	"github.com/cultureamp/ecrscanresults/findingconfig"
-	"github.com/cultureamp/ecrscanresults/registry"
-	"github.com/cultureamp/ecrscanresults/report"
-	"github.com/cultureamp/ecrscanresults/runtimeerrors"
+	"github.com/buildkite/ecrscanresults/buildkite"
+	"github.com/buildkite/ecrscanresults/finding"
+	"github.com/buildkite/ecrscanresults/findingconfig"
+	"github.com/buildkite/ecrscanresults/registry"
+	"github.com/buildkite/ecrscanresults/report"
+	"github.com/buildkite/ecrscanresults/runtimeerrors"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/sourcegraph/conc/iter"
 )

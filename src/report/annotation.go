@@ -11,9 +11,9 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/service/ecr/types"
-	"github.com/cultureamp/ecrscanresults/finding"
-	"github.com/cultureamp/ecrscanresults/findingconfig"
-	"github.com/cultureamp/ecrscanresults/registry"
+	"github.com/buildkite/ecrscanresults/finding"
+	"github.com/buildkite/ecrscanresults/findingconfig"
+	"github.com/buildkite/ecrscanresults/registry"
 	v1 "github.com/google/go-containerregistry/pkg/v1"
 	"github.com/justincampbell/timeago"
 	"golang.org/x/exp/maps"
