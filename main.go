@@ -137,12 +137,7 @@ func runCommand(ctx context.Context, pluginConfig Config, agent buildkite.Agent)
 	}
 	buildkite.Log("done.")
 
-	annotationStyle := "info"
-	if overThreshold {
-		annotationStyle = "error"
-	} else if criticalFindings > 0 || highFindings > 0 {
-		annotationStyle = "warning"
-	}
+	annotationStyle := "warning"
 
 	err = agent.Annotate(ctx, string(annotation), annotationStyle, "scan_results_"+imageDigest.Tag)
 	if err != nil {
