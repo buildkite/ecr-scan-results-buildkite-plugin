@@ -1,4 +1,17 @@
 services:
+  go:
+    build:
+      context: .
+      dockerfile: Dockerfile.buildkite
+      args:
+        - TARGETARCH
+    volumes:
+      - .:/work
+    working_dir: /work
+    environment:
+      - BUILDKITE_TAG
+      - GITHUB_TOKEN
+
   lint:
     image: buildkite/plugin-linter
     command: ['--id', 'cultureamp/ecr-scan-results']

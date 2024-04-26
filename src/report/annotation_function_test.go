@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go-v2/service/ecr/types"
-	"github.com/cultureamp/ecrscanresults/finding"
+	"github.com/buildkite/ecrscanresults/finding"
 	"github.com/stretchr/testify/assert"
 )
 

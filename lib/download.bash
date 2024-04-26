@@ -73,7 +73,7 @@ download_binary_and_run() {
   get_architecture || return 1
   local _arch="$RETVAL"
   local _executable="ecr-scan-results-buildkite-plugin"
-  local _repo="https://github.com/cultureamp/ecr-scan-results-buildkite-plugin"
+  local _repo="https://github.com/buildkite/ecr-scan-results-buildkite-plugin"
 
   get_version || return 1
   local _version="$RETVAL"

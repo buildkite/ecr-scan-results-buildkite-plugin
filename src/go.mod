@@ -1,4 +1,4 @@
-module github.com/cultureamp/ecrscanresults
+module github.com/buildkite/ecrscanresults
 
 go 1.23.4
 
