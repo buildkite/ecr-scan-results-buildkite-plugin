@@ -1,0 +1,38 @@
+steps:
+  - label: ":broom: Lint"
+    key: lint
+    command: "make -C src -f buildkite.mk lint"
+    plugins:
+      docker-compose#v4.8.0:
+        run: go
+
+  - label: ":test-analytics: Test"
+    key: test
+    command: "make -C src -f buildkite.mk test"
+    plugins:
+      docker-compose#v4.8.0:
+        run: go
+
+  - label: ":golang: Build"
+    key: build
+    command: "make -C src -f buildkite.mk ecrscanresults"
+    plugins:
+      docker-compose#v4.8.0:
+        run: go
+
+  - wait
+
+  - label: ":github: Release"
+    if: "build.tag != null"
+    key: release
+    command: ".buildkite/steps/release.sh"
+    plugins:
+      - aws-assume-role-with-web-identity:
+          role-arn: arn:aws:iam::445615400570:role/pipeline-buildkite-ecr-scan-results-buildkite-plugin
+      - aws-ssm#v1.0.0:
+          parameters:
+            GITHUB_TOKEN: /pipelines/buildkite/ecr-scan-results-buildkite-plugin/GITHUB_TOKEN
+      - docker-compose#v4.8.0:
+          run: go
+          env:
+            - GITHUB_TOKEN
