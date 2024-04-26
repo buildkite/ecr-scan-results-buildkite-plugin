@@ -7,10 +7,10 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go-v2/service/ecr/types"
-	"github.com/cultureamp/ecrscanresults/finding"
-	"github.com/cultureamp/ecrscanresults/findingconfig"
-	"github.com/cultureamp/ecrscanresults/registry"
-	"github.com/cultureamp/ecrscanresults/report"
+	"github.com/buildkite/ecrscanresults/finding"
+	"github.com/buildkite/ecrscanresults/findingconfig"
+	"github.com/buildkite/ecrscanresults/registry"
+	"github.com/buildkite/ecrscanresults/report"
 	"github.com/hexops/autogold/v2"
 	"github.com/stretchr/testify/require"
 )

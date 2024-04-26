@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/cultureamp/ecrscanresults/findingconfig"
+	"github.com/buildkite/ecrscanresults/findingconfig"
 	_ "github.com/hexops/autogold/v2"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

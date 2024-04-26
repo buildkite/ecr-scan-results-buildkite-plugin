@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cultureamp/ecrscanresults/findingconfig"
+	"github.com/buildkite/ecrscanresults/findingconfig"
 	v1 "github.com/google/go-containerregistry/pkg/v1"
 	"github.com/shopspring/decimal"
 
