@@ -1,5 +1,14 @@
 # ECR Scan Results Buildkite Plugin
 
+## About this fork
+
+This is a "mirror" fork of CultureAmp's excellent
+[`ecr-scan-results-buildkite-plugin`](https://github.com/cultureamp/ecr-scan-results-buildkite-plugin),
+for use at Buildkite. Maintaining this fork allows us to download a binary that
+we built from source ourselves.
+
+## About this plugin
+
 Buildkite plugin to retrieve ECR scan results from AWS's ECR image scanning
 service. By default the plugin will cause the step to fail if there are critical
 or high vulnerabilities reported. Specific vulnerabilities can be ignored via [a
