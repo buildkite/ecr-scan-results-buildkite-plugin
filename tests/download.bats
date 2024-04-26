@@ -43,6 +43,6 @@ EOM
   unset downloader
 
   assert_success
-  assert_line --regexp "https://github.com/cultureamp/ecr-scan-results-buildkite-plugin/releases/latest/download/ecr-scan-results-buildkite-plugin_linux_amd64 ecr-scan-results-buildkite-plugin"
+  assert_line --regexp "https://github.com/buildkite/ecr-scan-results-buildkite-plugin/releases/latest/download/ecr-scan-results-buildkite-plugin_linux_amd64 ecr-scan-results-buildkite-plugin"
   assert_line --regexp "executing ecr-scan-results-buildkite-plugin"
 }
