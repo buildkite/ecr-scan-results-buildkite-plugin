@@ -18,4 +18,7 @@ fi
 
 echo "--- Running goreleaser"
 
-goreleaser release --clean
+(
+  cd src
+  goreleaser release --clean
+)
