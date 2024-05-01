@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.buildkite
+      args:
+        - TARGETARCH
     volumes:
       - .:/work
     working_dir: /work
