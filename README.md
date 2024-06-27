@@ -71,7 +71,7 @@ steps:
   - command: "command which creates an image"
     # the docker-compose plugin may be used here instead of a command
     plugins:
-      - cultureamp/ecr-scan-results#v1.5.0:
+      - cultureamp/ecr-scan-results#v1.6.0:
           image-name: "$BUILD_REPO:deploy-$BUILD_TAG"
 ```
 
@@ -86,7 +86,7 @@ steps:
     plugins:
       - cultureamp/aws-assume-role:
           role: ${BUILD_ROLE}
-      - cultureamp/ecr-scan-results#v1.5.0:
+      - cultureamp/ecr-scan-results#v1.6.0:
           image-name: "$BUILD_REPO:deploy-$BUILD_TAG"
 ```
 
@@ -119,7 +119,7 @@ steps:
     plugins:
       - cultureamp/aws-assume-role:
           role: ${BUILD_ROLE}
-      - cultureamp/ecr-scan-results#v1.5.0:
+      - cultureamp/ecr-scan-results#v1.6.0:
           image-name: "$BUILD_REPO:deploy-$BUILD_TAG"
           max-criticals: "1"
           max-highs: "10"
@@ -128,6 +128,11 @@ steps:
 > [!TIP]
 > Prefer defining an ignore file over using thresholds, and use the `reason`
 > field to explain why the vulnerability is being ignored.
+
+## Making contributions
+
+Contributions are welcome! See the [Contributions Guide](./CONTRIBUTING.md) for
+information about running the plugin locally for testing.
 
 ## Configuration
 
