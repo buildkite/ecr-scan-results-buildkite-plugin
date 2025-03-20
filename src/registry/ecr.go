@@ -12,6 +12,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/ecr"
 	"github.com/aws/aws-sdk-go-v2/service/ecr/types"
+	"github.com/aws/smithy-go"
 )
 
 var registryImageExpr = regexp.MustCompile(`^(?P<registryId>[^.]+)\.dkr\.ecr\.(?P<region>[^.]+).amazonaws.com/(?P<repoName>[^:@]+)(?::(?P<tag>.+))?(?:@(?P<digest>.+))?$`)
@@ -152,7 +153,7 @@ func IsErrWaiterTimeout(w error) bool {
 var ErrWaiterTimeout WaiterError = "image scan waiter timed out"
 
 func (r *RegistryScan) WaitForScanFindings(ctx context.Context, digestInfo ImageReference) error {
-	waiter := ecr.NewImageScanCompleteWaiter(r.Client)
+	waiter := ecr.NewImageScanCompleteWaiter(r.Client, optionsScanFindingsRetryPolicy)
 
 	// wait between attempts for between 3 and 15 secs (exponential backoff)
 	// wait for a maximum of 3 minutes
@@ -246,4 +247,26 @@ func (r *RegistryScan) GetScanFindings(ctx context.Context, digestInfo ImageRefe
 	}
 
 	return out, nil
+}
+
+type RetryPolicyFunc = func(context.Context, *ecr.DescribeImageScanFindingsInput, *ecr.DescribeImageScanFindingsOutput, error) (bool, error)
+
+func optionsScanFindingsRetryPolicy(opts *ecr.ImageScanCompleteWaiterOptions) {
+	defaultRetryable := opts.Retryable
+	opts.Retryable = scanStateRetryableOnNotFound(defaultRetryable)
+}
+
+func scanStateRetryableOnNotFound(wrapped RetryPolicyFunc) RetryPolicyFunc {
+	return func(ctx context.Context, input *ecr.DescribeImageScanFindingsInput, output *ecr.DescribeImageScanFindingsOutput, err error) (bool, error) {
+		var aerr smithy.APIError
+		if err != nil && errors.As(err, &aerr) {
+			fmt.Printf("Smithy error?\n%+v\n%+v\n", aerr.ErrorCode(), aerr.ErrorFault())
+			if aerr.ErrorCode() == "ScanNotFoundException" {
+				fmt.Println("retrying")
+				return true, nil
+			}
+		}
+
+		return wrapped(ctx, input, output, err)
+	}
 }
