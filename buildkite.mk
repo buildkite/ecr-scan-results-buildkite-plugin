@@ -11,7 +11,7 @@ clean:
 .PHONY: lint
 lint:
 	go -C src mod tidy
-	(cd src && golangci-lint run --out-format=github-actions --path-prefix=src -v --timeout=2m)
+	(cd src && golangci-lint run --path-prefix=src -v --timeout=2m)
 
 cover.out:
 	go -C src test ./... -coverprofile=cover.out
